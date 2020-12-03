@@ -3,8 +3,11 @@ package sk.kosickaakademia.illiaspivak.sort;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
@@ -18,6 +21,8 @@ public class Main {
         printList(listB, b);
         numbersAnotB(listA, listB);
         numbersBnotA(listA, listB);
+        ArrayList<Integer> listAB = unification(listA, listB);
+        newC(listAB);
 
     }
 
@@ -79,4 +84,28 @@ public class Main {
                 System.out.print(cislo + " ");
         System.out.println();
     }
+    /**
+     * Metoda vytvori ArrayList kde budu vsetky cisla zo suboru a aj b bez duplicit
+     */
+    public static ArrayList<Integer> unification (ArrayList<Integer> a, ArrayList<Integer> b){
+        ArrayList<Integer> c=new ArrayList<>();
+        c.addAll(a);
+        c.addAll(b);
+        c = (ArrayList<Integer>) c.stream().distinct().collect(Collectors.toList());
+        return c;
+    }
+    /**
+     * Metoda vytvori subor c, kde bude arraylist suma AB
+     */
+    public   static void newC (ArrayList<Integer> c){
+        try {
+            File file = new File("resource\\c.txt");
+            file.createNewFile();
+            FileWriter fw = new FileWriter(file);
+            for (Integer cislo : c)
+                fw.write(cislo + " ");
+            fw.close();
+        }catch (IOException ex){}
+    }
+
 }
