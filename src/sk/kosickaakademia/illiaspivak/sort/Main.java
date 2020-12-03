@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,7 @@ public class Main {
         numbersBnotA(listA, listB);
         ArrayList<Integer> listAB = unification(listA, listB);
         newC(listAB);
+        sort(listAB);
 
     }
 
@@ -107,5 +109,16 @@ public class Main {
             fw.close();
         }catch (IOException ex){}
     }
-
+    /**
+     * Metoda vypise na obrazovky usporiadane vzostupne
+     */
+    public static void sort (ArrayList<Integer> a){
+        Collections.sort(a);
+        System.out.println("Usporiadane vzostupne:");
+        for(int counter: a){
+            System.out.println(counter);
+        }
+    }
 }
+
+
