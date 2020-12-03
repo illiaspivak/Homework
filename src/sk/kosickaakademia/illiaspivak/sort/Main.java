@@ -14,9 +14,10 @@ public class Main {
         int b = numberOfElements("resource\\b.txt");
         System.out.println("Subor A:");
         printList(listA, a);
-        System.out.println();
         System.out.println("Subor B:");
         printList(listB, b);
+        numbersAnotB(listA, listB);
+        numbersBnotA(listA, listB);
 
     }
 
@@ -54,5 +55,28 @@ public class Main {
         for(int i=0;i<b;i++) {
             System.out.print(a.get(i) + " ");
         }
+        System.out.println();
+    }
+    /**
+     * Metoda vypisuje zo suboru a tie cisla, ktore sa nenachadzaju v subore b
+     */
+    public static void numbersAnotB(ArrayList<Integer> a, ArrayList<Integer> b){
+        System.out.println("Cisla zo suboru A, ktore sa nenachadzaju v subore B ");
+        for (Integer cislo : a)
+            if (b.contains(cislo));
+            else
+                System.out.print(cislo + " ");
+        System.out.println();
+    }
+    /**
+     * Metoda vypisuje zo suboru b tie cisla, ktore sa nenachadzaju v subore a
+     */
+    public static void numbersBnotA(ArrayList<Integer> a, ArrayList<Integer> b){
+        System.out.println("Cisla zo suboru B, ktore sa nenachadzaju v subore A ");
+        for (Integer cislo : b)
+            if (a.contains(cislo));
+            else
+                System.out.print(cislo + " ");
+        System.out.println();
     }
 }
